@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --black: #222222;
+    --lightBl: #777777;
+    --red: #F03D1C;
+    --purple:#665fa7;
+    --green: #047A6A;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    color:var(--black);
+    font-weight: 400;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: var(--black);
+}
+.color-purple{
+    color: var(--purple);
+}
+
+/* login register css */
+.signin-form{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    opacity: 1;
+}
+.input-field{
+    border: none;
+    border-radius: 20px;
+    background: rgb(245, 234, 253);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.bg-img{
+    min-height:100vh;
+    background: url("../image/v722-aum-31b.jpg") no-repeat;
+    background-size: cover;
+    background-position: center; 
+}
+
+/* layout */
+.section-left{
+    width: 250px;
+    height: 100vh;
+    background-color: #665fa7;
+    transition: width 0.3s ease;
+}
+.search-input{
+    border: none;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;  
+    width: 300px;
+}
+.search-icon{
+    right: 10px;
+}
+
+header{
+    padding-bottom: 20px;
+    box-shadow: rgba(216, 191, 242, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.section-left.collapsed {
+    width: 80px;
+    overflow: hidden;
+}
+
+.section-left .menu-list li {
+    justify-content: center;
+}
+.task-field{
+    border: none;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.add-task{
+    background-color: #cecbea;
+}
+
