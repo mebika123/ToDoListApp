@@ -61,4 +61,22 @@ class TaskController extends Controller
         $task->delete();
         return redirect()->route('task.index')->with('success','Task deleted successfully!');
     }
+    public function updateStatus(Request $request){
+        $request->validate([
+            'status'=>'required|in:pending,inProgress,completed'
+        ]);
+        $task = Task::where('user_id',$request->user()->id)->findOrFail($request->id);
+        if($request->status == 'inProgress' && $task->status != 'pending'){
+            
+            return redirect()->route('task.index')->with('error','Status cannot be updated !');
+        }
+        if($request->status == 'completed' && $task->status != 'inProgress'){
+            
+            return redirect()->route('task.index')->with('error','Status cannot be updated !');
+        }
+        $task->status = $request->status;
+        $task->save();
+        return redirect()->route('task.index')->with('success','Status updated successfully!');
+
+    }
 }

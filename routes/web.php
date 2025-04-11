@@ -22,6 +22,7 @@ Route::middleware("auth")->group(function(){
     Route::post('/task/store', [TaskController::class, "store"])->name('task.store');
     Route::get('/task/edit/{id}', [TaskController::class, "edit"])->name('task.edit');
     Route::put('/task/update', [TaskController::class, "update"])->name('task.update');
+    Route::put('/task/updateStatus', [TaskController::class, "updateStatus"])->name('task.update_status');
     Route::delete('/task/delete/{id}', [TaskController::class, "delete"])->name('task.delete');
     
     Route::get('/categories', [CategoryController::class, "index"])->name('category.index');

@@ -6,29 +6,35 @@
             <div class="text-end">
                 <a href="{{ route('category.create') }}" class="btn btn-primary">+ New category</a>
             </div>
+            @if (Session::has('success'))
+                <p class="alert alert-success mt-2">{{ Session::get('success') }}</p>
+            @endif
+            @if (Session::has('error'))
+                <p class="alert alert-danger mt-2">{{ Session::get('error') }}</p>
+            @endif
             <div class="task-list-section mt-4">
-                @if (count($categories)>0)
-                <ul class="task-list">
-                    @foreach ($categories as $category)
-                        <li class="task-item bg-white d-flex justify-content-between align-items-center p-2">
-                            <div class="d-flex gap-3">
-                                <span>{{ $loop->iteration }}</span>
-                                <p class="mb-0">{{ $category->title }}</p>
-                            </div>
-                            <div class="d-flex gap-2 flex-nowrap">
-                                <a href="{{ route('category.edit', ['id' => $category->id]) }}"
-                                    class="btn btn-success py-1">Edit</a>
-                                <form action="{{ route('category.delete', ['id' => $category->id]) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn btn-danger py-1">Delete</button>
-                                </form>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
+                @if (count($categories) > 0)
+                    <ul class="task-list">
+                        @foreach ($categories as $category)
+                            <li class="task-item bg-white d-flex justify-content-between align-items-center p-2">
+                                <div class="d-flex gap-3">
+                                    <span>{{ $loop->iteration }}</span>
+                                    <p class="mb-0">{{ $category->title }}</p>
+                                </div>
+                                <div class="d-flex gap-2 flex-nowrap">
+                                    <a href="{{ route('category.edit', ['id' => $category->id]) }}"
+                                        class="btn btn-success py-1">Edit</a>
+                                    <form action="{{ route('category.delete', ['id' => $category->id]) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger py-1">Delete</button>
+                                    </form>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
                 @else
-                <p class="fs-4 text-center">No Tasks Found</p>
+                    <p class="fs-4 text-center">No Tasks Found</p>
                 @endif
             </div>
 

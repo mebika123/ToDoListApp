@@ -6,8 +6,14 @@
             <div class="text-end">
                 <a href="{{ route('task.create') }}" class="btn btn-primary">+ New task</a>
             </div>
+            @if (Session::has('success'))
+                <p class="alert alert-success mt-2">{{ Session::get('success') }}</p>
+            @endif
+            @if (Session::has('error'))
+                <p class="alert alert-danger mt-2">{{ Session::get('error') }}</p>
+            @endif
             <div class="task-list-section mt-4">
-                @if (count($tasks)>0)
+                @if (count($tasks) > 0)
                     <ul class="task-list">
                         @foreach ($tasks as $task)
                             <li class="task-item bg-white d-flex justify-content-between align-items-center p-2">
@@ -18,6 +24,18 @@
                                     <p class="mb-0">{{ $task->due_date }}</p>
                                 </div>
                                 <div class="d-flex gap-2 flex-nowrap">
+                                    <form action="{{ route('task.update_status') }}" method="POST">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" value="{{ $task->id }}" name="id">
+                                        @if ($task->status == 'pending')
+                                        <input type="hidden" name="status" value="inProgress">
+                                        <button class="btn btn-info text-white py-1">Start</button>
+                                        @elseif ($task->status == 'inProgress')
+                                        <input type="hidden" name="status" value="completed">
+                                            <button class="btn btn-info text-white py-1">Complete</button>
+                                        @endif
+                                    </form>
                                     <a href="{{ route('task.edit', ['id' => $task->id]) }}"
                                         class="btn btn-success py-1">Edit</a>
                                     <form action="{{ route('task.delete', ['id' => $task->id]) }}" method="POST">
