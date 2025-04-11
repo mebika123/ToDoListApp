@@ -9,9 +9,28 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     public function index(Request $request){
-        $tasks = Task::where('user_id',$request->user()->id)->get();
-        return view('task.index',compact('tasks'));
+        
+        $categories = Category::where('user_id',$request->user()->id)->get();
+        $tasks = Task::query();
+        $tasks->where('user_id',$request->user()->id);
+        if($request->input('status')){
+            $tasks->where('status',$request->input('status'));
+        }
+        if($request->input('category_id')){
+            $tasks->where('category_id',$request->input('category_id'));
+        }
+        if($request->input('deadline')){
+            $tasks->where('due_date',$request->input('deadline'));
+        }
+        if($request->input('sort')=="desc"){
+            $tasks->orderBy('due_date','DESC');
+        }
+        else{
+            $tasks->orderBy('due_date','ASC');
 
+        }
+        $tasks=$tasks->get();
+        return view('task.index',compact('tasks','categories'));
     }
     public function create(Request $request){
         $categories = Category::where('user_id',$request->user()->id)->get();
@@ -79,4 +98,5 @@ class TaskController extends Controller
         return redirect()->route('task.index')->with('success','Status updated successfully!');
 
     }
+
 }

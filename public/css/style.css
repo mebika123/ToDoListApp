@@ -52,11 +52,15 @@ a{
 }
 
 /* layout */
-.section-left{
+.sidebar{
     width: 250px;
-    height: 100vh;
     background-color: #665fa7;
     transition: width 0.3s ease;
+}
+aside{
+    width: 250px;
+    height: 100vh;
+   
 }
 .search-input{
     border: none;
@@ -73,12 +77,12 @@ header{
     box-shadow: rgba(216, 191, 242, 0.15) 1.95px 1.95px 2.6px;
 }
 
-.section-left.collapsed {
+.sidebar.collapsed,aside.collapsed {
     width: 80px;
     overflow: hidden;
 }
 
-.section-left .menu-list li {
+.sidebar .menu-list li {
     justify-content: center;
 }
 .task-field{

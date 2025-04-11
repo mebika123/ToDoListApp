@@ -18,28 +18,36 @@
 
 <body>
     <div class="d-flex">
-        <section class="section-left">
-            <aside>
-                <div class="menu pt-4 pl-2">
-                    <div class="d-flex justify-content-between align-items-center mx-3 mb-5">
-                        <a href="" class="text-light fw-semibold fs-4 text-toggle">ToDoList</a>
+        <section class="sidebar">
+            <aside class="position-fixed">
+                <div class="menu p-3">
+                    <div class="d-flex justify-content-between align-items-center pt-4">
+                        <a href="#" class="text-light fw-semibold fs-4 text-toggle">ToDoList</a>
                         <i class="fa-solid fa-bars text-light fa-lg" id="toggle-bar"></i>
                     </div>
-                    <div class="menu-content">
-                        <ul class="menu-list">
-                            <li class="menu-item pb-4">
-                                <a href="" class="menu-btn text-light mb-4">
+                    <div class="menu-content pt-4">
+                        <ul class="menu-list ps-0 d-flex flex-column gap-2">
+                            <li class="menu-item mb-4">
+                                <a href="{{ route('dashboard') }}" class="menu-btn text-light">
                                     <div class="d-flex gap-3 align-items-center">
                                         <i class="fa-solid fa-border-all fa-lg"></i>
                                         <span class="f-14 fw-medium text-toggle">Dashboard</span>
                                     </div>
                                 </a>
                             </li>
-                            <li class="menu-item">
-                                <a href="" class="menu-btn text-light">
+                            <li class="menu-item mb-4">
+                                <a href="{{ route('task.index') }}" class="menu-btn text-light">
                                     <div class="d-flex gap-3 align-items-center">
                                         <i class="fa-solid fa-list-check fa-lg"></i>
                                         <span class="f-14 fw-medium text-toggle">Tasks</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="menu-item mb-4">
+                                <a href="{{ route('category.index') }}" class="menu-btn text-light">
+                                    <div class="d-flex gap-3 align-items-center">
+                                        <i class="fa-solid fa-icons fa-lg"></i>
+                                        <span class="f-14 fw-medium text-toggle">Categories</span>
                                     </div>
                                 </a>
                             </li>
@@ -48,7 +56,7 @@
                 </div>
             </aside>
         </section>
-        <section class="section-right w-100">
+        <section class="section-right flex-grow-1">
             <div class="container">
             <header>
                     <div class="d-flex justify-content-between align-items-center pt-4 px-2 ">
@@ -94,9 +102,11 @@
     <script>
        $(document).ready(function () {
     $('#toggle-bar').on('click', function () {
-        $('.section-left').toggleClass('collapsed');
+        $('.sidebar').toggleClass('collapsed');
+        $('aside').toggleClass('collapsed');
         $('#toggle-bar').toggleClass('ps-3');
         $('.text-toggle').toggleClass('d-none');
+        $('.menu-item .d-flex').toggleClass('justify-content-center');
     });
 });
     </script>

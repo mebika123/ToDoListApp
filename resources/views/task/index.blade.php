@@ -12,9 +12,50 @@
             @if (Session::has('error'))
                 <p class="alert alert-danger mt-2">{{ Session::get('error') }}</p>
             @endif
+            <h5 class="fw-bold">Filters</h5 >
+                <form action="{{ route('task.index') }}" >
+                    <div class="row">
+                        <div class="form-group mb-4 col-4 ">
+                            <label class="mb-1" for="category">Category</label>
+                            <select name="category_id"
+                                class="py-2 task-field px-2 w-100">
+                                <option value="">Select Category</option>
+                                @foreach ($categories as $category )
+                                <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : ''}} >{{ $category->title }}</option>
+                                @endforeach
+                            </select>
+                            
+                        </div>
+                        <div class="form-group mb-4 col-4 ">
+                            <label class="mb-1" for="">Status</label>
+                            <select name="status" id=""
+                                class="py-2 task-field px-2 w-100">
+                                <option value="">Select Status</option>
+                                <option value="pending" {{ request('status') == "pending" ? 'selected' : ''}}>Pending</option>
+                                <option value="inProgress" {{ request('status') == "inProgress" ? 'selected' : ''}}>In Progress</option>
+                                <option value="completed" {{ request('status') == "completed" ? 'selected' : ''}}>Completed</option>
+                            </select>
+                            
+                        </div>
+                        <div class="form-group mb-4 col-4 ">
+                            <label class="mb-1" for="category">Deadline</label>
+                            <input type="date" name="deadline" id="" value="{{ request('deadline') }}" class="w-100 p-2 task-field">
+                        </div>
+                    </div>
+                    <div class="form-group mb-4 col-4 ">
+                        <label class="mb-1" for="">Sort By Deadline</label>
+                        <select name="sort" id="" 
+                            class="py-2 task-field px-2 w-100">
+                            <option value="asc" {{ request('sort') == "asc" ? 'selected' : ''}}>Ascending</option>
+                            <option value="desc" {{ request('sort') == "desc" ? 'selected' : ''}}>Descending</option>
+                        </select>
+                    </div>
+
+                    <input type="submit" value="Apply" class="btn btn-primary py-1">
+                </form>
             <div class="task-list-section mt-4">
                 @if (count($tasks) > 0)
-                    <ul class="task-list">
+                    <ul class="task-list ps-0">
                         @foreach ($tasks as $task)
                             <li class="task-item bg-white d-flex justify-content-between align-items-center p-2">
                                 <div>
@@ -29,10 +70,10 @@
                                         @csrf
                                         <input type="hidden" value="{{ $task->id }}" name="id">
                                         @if ($task->status == 'pending')
-                                        <input type="hidden" name="status" value="inProgress">
-                                        <button class="btn btn-info text-white py-1">Start</button>
+                                            <input type="hidden" name="status" value="inProgress">
+                                            <button class="btn btn-info text-white py-1">Start</button>
                                         @elseif ($task->status == 'inProgress')
-                                        <input type="hidden" name="status" value="completed">
+                                            <input type="hidden" name="status" value="completed">
                                             <button class="btn btn-info text-white py-1">Complete</button>
                                         @endif
                                     </form>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,10 @@ Route::post('/logout',[AuthController::class, "logout"])->name('logout');
 
 
 Route::middleware("auth")->group(function(){
-    Route::get('/home', function () {
-        return view('welcome');
-    })->name('home');
+    Route::get('/dashboard', function(){
+        return view('index');
+    })->name('dashboard');
+
     Route::get('/tasks', [TaskController::class, "index"])->name('task.index');
     Route::get('/task/create', [TaskController::class, "create"])->name('task.create');
     Route::post('/task/store', [TaskController::class, "store"])->name('task.store');
