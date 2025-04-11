@@ -21,35 +21,36 @@ class TaskController extends Controller
     public function store(Request $request){
         $request->validate([
             'title'=>'required',
-            'descrition'=>'required',
+            'description'=>'required',
             'deadline'=>'required|date|after_or_equal:today',
             'category_id'=>'required|exists:categories,id'
         ]);
         $task = new Task();
         $task->title = $request->title;
         $task->description = $request->description;
-        $task->due_date = $request->dealine;
+        $task->due_date = $request->deadline;
         $task->category_id = $request->category_id;
         $task->user_id = $request->user()->id;
         $task->save();
         return redirect()->route('task.index')->with('success','Task created successfully!');
     }
     public function edit(Request $request,$id){
+        $categories = Category::where('user_id',$request->user()->id)->get();
         $task = Task::where('user_id',$request->user()->id)->findOrFail($id);
-        return view('task.edit-task', compact('task'));
+        return view('task.edit-task', compact('task','categories'));
 
     }
-    public function update(Request $request,$id){
+    public function update(Request $request){
         $request->validate([
             'title'=>'required',
-            'descrition'=>'required',
+            'description'=>'required',
             'deadline'=>'required|date|after_or_equal:today',
             'category_id'=>'required|exists:categories,id'
         ]);
-        $task = Task::where('user_id',$request->user()->id)->findOrFail($id);
+        $task = Task::where('user_id',$request->user()->id)->findOrFail($request->id);
         $task->title = $request->title;
         $task->description = $request->description;
-        $task->due_date = $request->dealine;
+        $task->due_date = $request->deadline;
         $task->category_id = $request->category_id;
         $task->user_id = $request->user()->id;
         $task->save();

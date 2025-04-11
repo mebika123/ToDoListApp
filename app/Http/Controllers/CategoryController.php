@@ -31,11 +31,11 @@ class CategoryController extends Controller
         return view('category.edit-category', compact('category'));
 
     }
-    public function update(Request $request,$id){
+    public function update(Request $request){
         $request->validate([
-            'title'=>'required|unique:categories,title,'.$id
+            'title'=>'required|unique:categories,title,'.$request->id
         ]);
-        $category = Category::where('user_id',$request->user()->id)->findOrFail($id);
+        $category = Category::where('user_id',$request->user()->id)->findOrFail($request->id);
         $category->title = $request->title;
         $category->user_id = $request->user()->id;
         $category->save();
