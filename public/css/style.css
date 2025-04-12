@@ -10,6 +10,7 @@
     --red: #F03D1C;
     --purple:#665fa7;
     --green: #047A6A;
+    --yellow: #fbb431;
 }
 html{
     scroll-behavior: smooth;
@@ -32,7 +33,27 @@ a{
 .color-purple{
     color: var(--purple);
 }
+.bg-purple{
+    background-color: var(--purple);
+}
+.bg-green{
+    background-color: var(--green);
+}
+.bg-red{
+    background-color: var(--red);
+}
+.bg-yellow{
+    background-color: var(--yellow);
+}
+.action-btn .btn{
+    color: white;
+    border: none;
+    transition: all 0.3 ease-in;
+}
 
+.f-12{
+    font-size: 12px;
+}
 /* login register css */
 .signin-form{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -50,14 +71,20 @@ a{
     background-size: cover;
     background-position: center; 
 }
+.action-btn .btn:hover{
+    background: #c5c3ec;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    color: black;
+    border: none;
+}
 
 /* layout */
 .sidebar{
     width: 250px;
-    background-color: #665fa7;
     transition: width 0.3s ease;
 }
 aside{
+    background-color: #665fa7;
     width: 250px;
     height: 100vh;
    
@@ -92,5 +119,13 @@ header{
 }
 .add-task{
     background-color: #e6e4f5;
+}
+
+/* dasboard card */
+.wg-chart{
+    padding: 20px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 

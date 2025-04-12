@@ -82,7 +82,6 @@
                     </div>
             </header>
             <section class="main-section">
-
                 <div class="mt-5">
                     @yield('content')                    
                 </div>
