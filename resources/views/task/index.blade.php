@@ -15,7 +15,7 @@
             <h5 class="fw-bold">Filters</h5>
             <form action="{{ route('task.index') }}">
                 <div class="row">
-                    <div class="form-group mb-4 col-4 ">
+                    <div class="form-group mb-4 col-sm-6 col-md-4 ">
                         <label class="mb-1" for="category">Category</label>
                         <select name="category_id" class="py-2 task-field px-2 w-100">
                             <option value="">Select Category</option>
@@ -27,7 +27,7 @@
                         </select>
 
                     </div>
-                    <div class="form-group mb-4 col-4 ">
+                    <div class="form-group mb-4 col-sm-6 col-md-4 ">
                         <label class="mb-1" for="">Status</label>
                         <select name="status" id="" class="py-2 task-field px-2 w-100">
                             <option value="">Select Status</option>
@@ -39,13 +39,13 @@
                         </select>
 
                     </div>
-                    <div class="form-group mb-4 col-4 ">
+                    <div class="form-group mb-4 col-sm-6 col-md-4 ">
                         <label class="mb-1" for="category">Deadline</label>
                         <input type="date" name="deadline" id="" value="{{ request('deadline') }}"
                             class="w-100 p-2 task-field">
                     </div>
                 </div>
-                <div class="form-group mb-4 col-4 ">
+                <div class="form-group mb-4 col-sm-6 col-md-4 ">
                     <label class="mb-1" for="">Sort By Deadline</label>
                     <select name="sort" id="" class="py-2 task-field px-2 w-100">
                         <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Ascending</option>
@@ -59,7 +59,7 @@
                 @if (count($tasks) > 0)
                     <ul class="task-list ps-0">
                         @foreach ($tasks as $task)
-                            <li class="task-item bg-white d-flex justify-content-between align-items-center p-2">
+                            <li class="task-item flex-column gap-2 bg-white d-flex flex-sm-row justify-content-between align-items-sm-center p-2 mb-2">
                                 <div>
                                     <p class="mb-1
                                 @if ($task->status == 'completed') text-decoration-line-through @endif">
@@ -78,7 +78,7 @@
                                     <p class="mb-0 f-12">{{ substr($task->description, 0, 20) }}</p>
                                     <p class="mb-0">{{ $task->due_date }}</p>
                                 </div>
-                                <div class="d-flex gap-2 flex-nowrap action-btn">
+                                <div class="d-flex gap-2 flex-nowrap action-btn align-self-sm-center align-self-end">
                                     <form action="{{ route('task.update_status') }}" method="POST">
                                         @method('PUT')
                                         @csrf
@@ -96,14 +96,14 @@
                                     <form action="{{ route('task.delete', ['id' => $task->id]) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn bg-red py-1">Delete</button>
+                                        <button class="btn bg-red  py-1">Delete</button>
                                     </form>
                                 </div>
                             </li>
                         @endforeach
                     </ul>
                 @else
-                    <p class="fs-4 text-center">No Tasks Found</p>
+                    <p class="fs-5 text-center">No Tasks Found</p>
                 @endif
             </div>
         </div>

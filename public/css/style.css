@@ -87,6 +87,7 @@ aside{
     background-color: #665fa7;
     width: 250px;
     height: 100vh;
+    transition: all 0.2s ease;
    
 }
 .search-input{
@@ -100,7 +101,6 @@ aside{
 }
 
 header{
-    padding-bottom: 20px;
     box-shadow: rgba(216, 191, 242, 0.15) 1.95px 1.95px 2.6px;
 }
 
@@ -120,6 +120,12 @@ header{
 .add-task{
     background-color: #e6e4f5;
 }
+aside.collapsed .menu-list{
+    margin-top: 20px;
+}
+aside.collapsed .menu-item{
+    margin-top: 10px;
+}
 
 /* dasboard card */
 .wg-chart{
@@ -128,4 +134,5 @@ header{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
 }
+
 

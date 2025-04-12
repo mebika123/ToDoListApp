@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
 <div class="row justify-content-center">
-    <div class="add-task col-11 col-md-6 p-4 rounded">
+    <div class="add-task col-11 col-md-8 col-lg-6  p-4 rounded">
         <h4 class="text-center">Edit task</h4>
         <form action="{{ route('task.update') }}" method="POST">
             @method('PUT')

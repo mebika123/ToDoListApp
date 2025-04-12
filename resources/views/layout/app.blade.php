@@ -21,9 +21,9 @@
         <section class="sidebar">
             <aside class="position-fixed">
                 <div class="menu p-3">
-                    <div class="d-flex justify-content-between align-items-center pt-4">
+                    <div class="d-flex sidebar-top justify-content-between align-items-center pt-1 ">
                         <a href="#" class="text-light fw-semibold fs-4 text-toggle">ToDoList</a>
-                        <i class="fa-solid fa-bars text-light fa-lg" id="toggle-bar"></i>
+                        <i class="fa-solid fa-bars text-light fa-lg toggle-bar"></i>
                     </div>
                     <div class="menu-content pt-4">
                         <ul class="menu-list ps-0 d-flex flex-column gap-2">
@@ -57,36 +57,28 @@
             </aside>
         </section>
         <section class="section-right flex-grow-1">
-            <div class="container">
             <header>
-                    <div class="d-flex justify-content-between align-items-center pt-4 px-2 ">
-                        <div class="search-content d-flex align-items-center gap-3">
-                            
-                            {{-- <a href="" class="fw-semibold fs-4 color-purple">ToDoList</a>
-                            <div class="search-bar position-relative">
-                                <form action="">
-                                    <input type="text" placeholder="Search here" class="search-input py-1 px-2">
-                                </form>
-                                <div class="search-icon position-absolute top-50 translate-middle">
-                                    <i class="fa-solid fa-magnifying-glass color-purple"></i>
-                                </div>
-                            </div> --}}
-                        </div>
-                        <div class="user-info d-flex align-items-center gap-3">
-                            <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
-                            <form method="POST" action="{{ route('logout') }}" id="logout-form">
-                                @csrf
-                            <button class="btn btn-primary">Log Out</button>
-                            </form>
-                        </div>
+                <div class="d-flex justify-content-between justify-content-md-end align-items-center py-3 px-2 ">
+                    <div class="search-content d-flex d-md-none align-items-center gap-3">
+                        <a href="" class="fw-semibold fs-4 color-purple">ToDoList</a>
+                        <i class="fa-solid fa-bars fa-lg toggle-bar color-purple"></i>
                     </div>
-            </header>
-            <section class="main-section">
-                <div class="mt-5">
-                    @yield('content')                    
+                    <div class="user-info d-flex align-items-center gap-3">
+                        <span class="">{{ Auth::user()->name }}</span>
+                        <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                            @csrf
+                            <button class="btn btn-primary">Log Out</button>
+                        </form>
+                    </div>
                 </div>
-            </section>
-        </div>
+            </header>
+            <div class="container">
+                <section class="main-section">
+                    <div class="mt-5">
+                        @yield('content')
+                    </div>
+                </section>
+            </div>
         </section>
     </div>
 
@@ -99,15 +91,15 @@
     </script>
     @stack('script')
     <script>
-       $(document).ready(function () {
-    $('#toggle-bar').on('click', function () {
-        $('.sidebar').toggleClass('collapsed');
-        $('aside').toggleClass('collapsed');
-        $('#toggle-bar').toggleClass('ps-3');
-        $('.text-toggle').toggleClass('d-none');
-        $('.menu-item .d-flex').toggleClass('justify-content-center');
-    });
-});
+        $(document).ready(function() {
+            $('.toggle-bar').on('click', function() {
+                $('.sidebar').toggleClass('collapsed');
+                $('aside').toggleClass('collapsed');
+                $('.text-toggle').toggleClass('d-md-none');
+                $('.menu-item .d-flex').toggleClass('justify-content-center');
+                $('.sidebar-top').toggleClass('justify-content-between justify-content-center');
+            });
+        });
     </script>
 </body>
 

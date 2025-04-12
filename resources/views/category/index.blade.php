@@ -34,7 +34,7 @@
                         @endforeach
                     </ul>
                 @else
-                    <p class="fs-4 text-center">No Tasks Found</p>
+                    <p class="fs-5 text-center">No Tasks Found</p>
                 @endif
             </div>
 
